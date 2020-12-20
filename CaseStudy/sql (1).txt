@@ -1,0 +1,35 @@
+ create table coursecatalog(courseID INT PRIMARY KEY,
+  courseName VARCHAR(40), courseTrainer INT, preRequisite INT, duration INT, 
+  startDate DATE, endDate DATE, timing VARCHAR(40), url VARCHAR(250));
+
+
+
+insert into coursecatalog values(1,'Java',1,NULL,40,'2020-11-02','2020-11-06','8AM-6PM','link1');
+insert into coursecatalog values(2,'SQL',2,NULL,40,'2020-11-07','2020-11-08','8AM-6PM','link2');
+insert into coursecatalog values(3,'JDBC',1,1,40,'2020-11-09','2020-11-11','8AM-6PM','link3');
+insert into coursecatalog values(4,'PLSQL',2,2,40,'2020-11-11','2020-11-12','8AM-6PM','link4');
+
+
+
+create table Employee(
+     employeeID INT PRIMARY KEY, employeeName VARCHAR(40), isAdmin BOOLEAN, employeePassword VARCHAR(50));
+
+
+insert into employee values (1,'Shailaja',TRUE,'Shailaja');
+insert into employee values (2,'Jayant',FALSE,'Jayant');
+insert into employee values (3,'Vamsee',FALSE,'Vamsee');
+insert into employee values (4,'Himesh',TRUE,'Himesh');
+
+create table Enrollment(
+courseID INT,
+employeeID INT,
+FOREIGN KEY(courseID) REFERENCES coursecatalog(courseID) ON DELETE CASCADE,
+FOREIGN KEY(employeeID) REFERENCES Employee(employeeID) ON DELETE CASCADE);
+
+insert into Enrollment values(1,2);
+insert into Enrollment values(1,3);
+insert into Enrollment values(1,4);
+insert into Enrollment values(3,3);
+insert into Enrollment values(3,2);
+insert into Enrollment values(4,4);
+insert into Enrollment values(4,2);
